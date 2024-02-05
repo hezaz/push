@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:31:43 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/05 17:20:02 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/05 21:01:33 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int still_index(t_stack *stack, int index)
     t_stack *tmp;
 
     tmp = stack;
+    if (ft_stksize(stack) < 3)
+        return 0;
     if (index == 2)
         limit = (stack->stack_size * 2) / 3;
     else if (index == 3)
@@ -53,7 +55,7 @@ void first_sorrt(t_stack **stack_a, t_stack **stack_b)
         }
         if (rot_cpt)
             ft_rotate(stack_a, &rot_cpt, 'a');
-        //if ((*stack_a)->index != 0 && (*stack_a)->index != 1)
+        if ((*stack_a)->index != (*stack_a)->index_min && (*stack_a)->index != (*stack_a)->index_max + 1)
         ft_push(stack_a, stack_b,'b');
     }
 }
@@ -79,7 +81,7 @@ void second_sorrt(t_stack **stack_a, t_stack **stack_b)
         }
         if (rot_cpt)
             ft_rotate(stack_a, &rot_cpt, 'a');
-        //if ((*stack_a)->index != 0 && (*stack_a)->index != 1)
+        if ((*stack_a)->index != (*stack_a)->index_min && (*stack_a)->index != (*stack_a)->index_max + 1)
         ft_push(stack_a, stack_b,'b');
     }
 }
@@ -110,6 +112,11 @@ void first(t_stack **stack_a, t_stack **stack_b)
             ft_rotate(stack_a, &rot_cpt, 'a');
         if ((*stack_a)->index != (*stack_a)->index_min && (*stack_a)->index != (*stack_a)->index_min + 1)
             ft_push(stack_a, stack_b,'b');
+    }
+    if (ft_stksize(*stack_a) < 2)
+    {
+        printf("grosse erreur");
+        exit(0);
     }
     ft_mini_sort(stack_a);
 }

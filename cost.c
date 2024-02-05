@@ -74,15 +74,6 @@ t_stack *find_place(t_stack *element_b, t_stack **stack_a)
         return NULL;
     }
 	get_cost(stack_a);
-    // Cas spécial pour le premier élément de stack_a
-    t_stack *first = *stack_a;
-    t_stack *last = ft_stklast(stack_a);
-
-    if (element_b->index < last->index || element_b->index > first->index)
-    {
-        return last; // Placer avant le premier élément si element_b est le plus grand
-    }
-
     // Recherche de la position où element_b doit être inséré
     while (current->next != NULL)
     {
@@ -97,10 +88,13 @@ t_stack *find_place(t_stack *element_b, t_stack **stack_a)
     // Gérer le cas où l'élément doit être placé en fin de stack_a
     if (last_valid_position == NULL)
     {
-        if (current->index < element_b->index)
+		current = *stack_a;
+        while (current->index !=element_b->index_min && current)
         {
-            last_valid_position = first; // Placer au début si element_b est le plus grand
+            current = current->next; // Placer au début si element_b est le plus grand
         }
+		if (current->index == current->index_min)
+			last_valid_position = current;
     }
 	element_b->cost_a = last_valid_position->cost;
     return last_valid_position;
@@ -151,11 +145,11 @@ void find_best_op(t_stack **stack_a,t_stack **stack_b)
 	rot_b = 0;
 	while (tmp_b)
 	{
-		if (tmp_b->absolute_cost < cpr)
+		if (tmp_b->absolute_cost <= cpr)
 		{
 			cpr = tmp_b->absolute_cost;
 			rot_b = tmp_b->cost;
-			rot_a = 0;//(find_place(tmp_b, stack_a))->cost;
+			rot_a = (find_place(tmp_b, stack_a))->cost;
 
 		}
 		tmp_b = tmp_b->next;

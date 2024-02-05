@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:30:25 by hzaz              #+#    #+#             */
-/*   Updated: 2024/01/11 00:53:43 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/05 14:46:32 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ int main(int ac, char **av)
 	stack_a = NULL;
 	stack_a = get_stack(av, stack_a, ac);
 	ft_get_index_final(stack_a);
-	first_sort(&stack_a, &stack_b);
+	first(&stack_a, &stack_b);
+	//first_sort(&stack_a, &stack_b);
 	//ici y'avait des commentaire
 	//int i = 0;
 	//printf("*****************************STACK A & B initial*********************************\n");

@@ -6,11 +6,27 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:35:14 by hzaz              #+#    #+#             */
-/*   Updated: 2023/04/12 00:09:11 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/05 14:47:54 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+void ft_getsize(t_stack **stack)
+{
+	int len;
+
+	t_stack *tmp;
+
+	len = ft_stksize(*stack);
+	tmp = *stack;
+	while (tmp)
+	{
+		tmp->stack_size = len;
+		tmp = tmp->next;
+	}
+
+}
 
 void ft_get_index_final(t_stack *stack_a)
 {
@@ -34,6 +50,7 @@ void ft_get_index_final(t_stack *stack_a)
 		current->index = final_index;
 		current = current->next;
 	}
+	ft_getsize(&stack_a);
 	get_index_max_min(stack_a);
 }
 

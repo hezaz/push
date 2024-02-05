@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:47:43 by hzaz              #+#    #+#             */
-/*   Updated: 2023/04/12 00:09:23 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/05 14:45:24 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct s_stack
 	int index_min;
 	int pos;
 	int cost;
+	int cost_a;
+	int	stack_size;
 	int	absolute_cost;
     struct s_stack *next;
 } 	t_stack;
@@ -64,5 +66,7 @@ void		ft_rotate(t_stack **stack, int *i, char c);
 void		ft_reverse_rotate(t_stack **stack, int *i, char c);
 void		ft_rr(t_stack **stack_a, t_stack **stack_b, int *i, int *j);
 t_stack		*ft_stklast(t_stack **stack);
-
+void first(t_stack **stack_a, t_stack **stack_b);
+void second_sorrt(t_stack **stack_a, t_stack **stack_b);
+void first_sorrt(t_stack **stack_a, t_stack **stack_b);
 #endif

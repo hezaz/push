@@ -162,9 +162,9 @@ void	ft_pushwap(t_stack **stack_a, t_stack **stack_b, int *rota, int *rotb)
 	{
 		if ((*rota > 0 && *rotb <= 0) || (*rota < 0 && *rotb >= 0))
 			ft_rotate(stack_a, rota, 'a');
-		else if ((rotb < 0 && rota >= 0) || (rotb > 0 && rota <= 0))
+		else if ((*rotb < 0 && *rota >= 0) || (*rotb > 0 && *rota <= 0))
 			ft_rotate(stack_b, rotb, 'b');
-		else if ((rota > 0 && rotb > 0 )||(rota < 0 && rotb < 0))
+		else if ((*rota > 0 && *rotb > 0 )||(*rota < 0 && *rotb < 0))
 			ft_rr(stack_a, stack_b, rota, rotb);
 
 	}

@@ -96,6 +96,7 @@ void first(t_stack **stack_a, t_stack **stack_b)
     while (ft_stksize(*stack_a) > 2)
     {
         get_cost(stack_a);
+        tmp = *stack_a;
         while(tmp)
         {
             if (tmp->index != (*stack_a)->index_min && tmp->index != (*stack_a)->index_min + 1)

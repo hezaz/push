@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:30:25 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/05 14:46:32 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/05 20:23:33 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,7 @@ int main(int ac, char **av)
 	//printf("*****************************STACK A & B initial*********************************\n");
 	//ft_print_stack(&stack_a, &stack_b, i);
 	//printf("*****************************STACK A & B initial*********************************\n\n\n");
-
-	//ft_get_cost(&stack_a, &stack_b);
+	ft_get_cost(&stack_a, &stack_b);
 
 	//if (stack_b)
 	//{

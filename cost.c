@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:39:57 by hzaz              #+#    #+#             */
-/*   Updated: 2024/01/11 00:42:32 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/05 20:28:19 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_get_cost(t_stack **stack_a, t_stack **stack_b)
 {
-	int	*l;
 
 	if (!(*stack_b))
 		return ;
@@ -22,8 +21,8 @@ void	ft_get_cost(t_stack **stack_a, t_stack **stack_b)
 	//ft_print_stack(stack_a, stack_b, ft_stksize(*stack_b));
 	get_cost(stack_a);
 	get_cost(stack_b);
-	l = get_absolute_cost(stack_a, stack_b);
-	find_best_op(stack_a, stack_b, l);
+	get_absolute_cost(stack_a, stack_b);
+	find_best_op(stack_a, stack_b);
 }
 
 void	get_cost(t_stack **stack)
@@ -48,86 +47,105 @@ void	get_cost(t_stack **stack)
 		(*stack)->next->cost = 1;
 		(*stack)->next->next->cost = -1;
 	}
+
+	else
+	{
 	tmp = *stack;
-	while (tmp)
-	{
-		if ((tmp->pos - 1) > len / 2)
-			tmp->cost= tmp->pos - len - 1;
-		else
-			tmp->cost = tmp->pos - 1;
-		tmp = tmp->next;
+		while (tmp)
+		{
+			if ((tmp->pos - 1) > len / 2)
+				tmp->cost= tmp->pos - len - 1;
+			else
+				tmp->cost = tmp->pos - 1;
+			tmp = tmp->next;
+		}
 	}
+
 }
 
-int		*get_absolute_cost(t_stack **stack_a, t_stack **stack_b)
+t_stack *find_place(t_stack *element_b, t_stack **stack_a)
 {
-	t_stack *tmp_a;
-	t_stack *tmp_b;
-	int rota_cpt;
-	//int rotb_cpt;
-	if (!(*stack_b))
-			return NULL;
-	tmp_a = *stack_a;
-	tmp_b = *stack_b;
-	while (tmp_b)
-	{
-		tmp_a = *stack_a;
-		rota_cpt = 0;
-		if (tmp_a->index > tmp_b->index && ft_stklast(&tmp_a)->index < tmp_b->index)
-			rota_cpt = tmp_a->cost;
-		else
-		{
-			while (tmp_a)
-			{
+    t_stack *current = *stack_a;
+    t_stack *last_valid_position = NULL;
 
-				if ((tmp_a && tmp_a->next) && tmp_a->index < tmp_b->index
-					&& tmp_a->next->index > tmp_b->index)
-				{
-						rota_cpt = tmp_a->next->cost;
-						tmp_a = tmp_a->next;
-						break ;
-				}
-				tmp_a = tmp_a->next;
+    // Si stack_a est vide, retourner NULL (aucun placement possible)
+    if (current == NULL)
+    {
+        return NULL;
+    }
+	get_cost(stack_a);
+    // Cas spécial pour le premier élément de stack_a
+    t_stack *first = *stack_a;
+    t_stack *last = ft_stklast(stack_a);
 
-			}
-		}
-		if (( rota_cpt >= 0 && tmp_b->cost >= 0))
-		{
-			if (rota_cpt >= tmp_b->cost)
-				tmp_b->absolute_cost = rota_cpt;
-			else
-				tmp_b->absolute_cost = tmp_b->cost;
-		}
-		else if (rota_cpt < 0 && tmp_b->cost < 0)
-		{
-			if (rota_cpt < tmp_b->cost)
-				tmp_b->absolute_cost = (rota_cpt * (-1));
-			else
-				tmp_b->absolute_cost = (tmp_b->cost * (-1));
-		}
-		else
-		{
-			if (rota_cpt < 0)
-				tmp_b->absolute_cost = (rota_cpt * (-1)) + tmp_b->cost;
-			else if (tmp_b->cost < 0)
-				tmp_b->absolute_cost = (tmp_b->cost * (-1)) + rota_cpt;
-		}
-		tmp_b=tmp_b->next;
+    if (element_b->index < last->index || element_b->index > first->index)
+    {
+        return last; // Placer avant le premier élément si element_b est le plus grand
+    }
 
-	}
-	return (&tmp_a->cost);
+    // Recherche de la position où element_b doit être inséré
+    while (current->next != NULL)
+    {
+        if (current->index < element_b->index && current->next->index > element_b->index)
+        {
+            last_valid_position = current->next;
+            break;
+        }
+        current = current->next;
+    }
 
+    // Gérer le cas où l'élément doit être placé en fin de stack_a
+    if (last_valid_position == NULL)
+    {
+        if (current->index < element_b->index)
+        {
+            last_valid_position = first; // Placer au début si element_b est le plus grand
+        }
+    }
+	element_b->cost_a = last_valid_position->cost;
+    return last_valid_position;
 }
 
 
-void find_best_op(t_stack **stack_a,t_stack **stack_b,int *rota_cpt)
+
+void		get_absolute_cost(t_stack **stack_a, t_stack **stack_b)
+{
+    t_stack *current_b = *stack_b;
+
+    while (current_b != NULL)
+    {
+
+        t_stack *placement_a = find_place(current_b, stack_a);
+
+        // Assigner le coût de placement_a à cost_a de l'élément de stack_b
+        current_b->cost_a = (placement_a != NULL) ? placement_a->cost : 0;
+		//printf("\n%d\n", current_b->cost_a);
+        // Calculer le coût absolu
+        int cost_b = current_b->cost;
+
+        // Si les coûts sont de signes différents, additionner leurs valeurs absolues
+        if ((current_b->cost_a < 0 && cost_b >= 0) || (current_b->cost_a >= 0 && cost_b < 0))
+        {
+            current_b->absolute_cost = abs(current_b->cost_a) + abs(cost_b);
+        }
+        else
+        {
+            // Si les coûts sont de même signe, prendre la valeur absolue la plus élevée
+            current_b->absolute_cost = abs(current_b->cost_a) > abs(cost_b) ? abs(current_b->cost_a) : abs(cost_b);
+        }
+
+        current_b = current_b->next;
+    }
+}
+
+
+void find_best_op(t_stack **stack_a,t_stack **stack_b)
 {
 	t_stack		*tmp_b;
 	int			rot_b;
+	int			rot_a;
 	int			cpr;
 
-	if (!(*stack_b))
-		return;
 	tmp_b = *stack_b;
 	cpr = tmp_b->absolute_cost;
 	rot_b = 0;
@@ -137,35 +155,36 @@ void find_best_op(t_stack **stack_a,t_stack **stack_b,int *rota_cpt)
 		{
 			cpr = tmp_b->absolute_cost;
 			rot_b = tmp_b->cost;
-			break ;
+			rot_a = 0;//(find_place(tmp_b, stack_a))->cost;
+
 		}
 		tmp_b = tmp_b->next;
+
 	}
-	//ft_printf("\n pos = %d\n cpr = %d\n", rot_b, cpr);
-	//if (!stack_a)
-	//	*rota_cpt = ft_atoi("1233");
-	ft_pushwap(stack_a, stack_b, rota_cpt, &rot_b);
+
+	ft_pushwap(stack_a, stack_b, &rot_a, &rot_b);
 
 }
 
-void	ft_pushwap(t_stack **stack_a, t_stack **stack_b, int *rota, int *rotb)
+void	ft_pushwap(t_stack **stack_a, t_stack **stack_b, int *rot_a, int *rot_b)
 {
-
+	int rota;
+	int rotb;
 	t_stack *tmp_b;
-	
 
+	rota = *rot_a;
+	rotb = *rot_b;
 	tmp_b = *stack_b;
 	if (!tmp_b)
 		return ; ///////// LEAKS LEAKS LEAKS LEAKS LEAKS STACK A & B NO FREED have to impkement ft_error with stack a and b and not just stack a
-
-	while (*rota != 0 || *rotb != 0)
+	while (rota != 0 || rotb != 0)
 	{
-		if ((*rota > 0 && *rotb <= 0) || (*rota < 0 && *rotb >= 0))
-			ft_rotate(stack_a, rota, 'a');
-		else if ((*rotb < 0 && *rota >= 0) || (*rotb > 0 && *rota <= 0))
-			ft_rotate(stack_b, rotb, 'b');
-		else if ((*rota > 0 && *rotb > 0 )||(*rota < 0 && *rotb < 0))
-			ft_rr(stack_a, stack_b, rota, rotb);
+		if ((rota > 0 && rotb <= 0) || (rota < 0 && rotb >= 0))
+			ft_rotate(stack_a, &rota, 'a');
+		else if ((rotb < 0 && rota >= 0) || (rotb > 0 && rota <= 0))
+			ft_rotate(stack_b, &rotb, 'b');
+		else if ((rota > 0 && rotb > 0 )||(rota < 0 && rotb < 0))
+			ft_rr(stack_a, stack_b, &rota, &rotb);
 
 	}
 	ft_push(stack_b, stack_a,'a');

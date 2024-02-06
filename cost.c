@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:39:57 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/06 01:22:19 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/06 02:35:19 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_get_cost(t_stack **stack_a, t_stack **stack_b)
 	//ft_print_stack(stack_a, stack_b, ft_stksize(*stack_b));
 	get_cost(stack_a);
 	get_cost(stack_b);
-	get_absolute_cost(stack_a, stack_b);
+	get_absolute_cost( stack_b);
 	find_best_op(stack_a, stack_b);
 }
 
@@ -101,33 +101,33 @@ t_stack *find_place(t_stack *element_b, t_stack **stack_a)
 	//if (current->value )
 
     // Gérer le cas où l'élément doit être placé en fin de stack_a
-    if (last_valid_position == NULL)
-    {
-		current = *stack_a;
-        while (current->index !=element_b->index_min && current)
-        {
-            current = current->next; // Placer au début si element_b est le plus grand
-        }
-		if (current->index == current->index_min)
-			last_valid_position = current;
-    }
+    //if (last_valid_position == NULL)
+    //{
+	//	current = *stack_a;
+    //    while (current->index !=element_b->index_min && current)
+    //    {
+    //        current = current->next; // Placer au début si element_b est le plus grand
+    //    }
+	//	if (current->index == current->index_min)
+	//		last_valid_position = current;
+    //}
 	element_b->cost_a = last_valid_position->cost;
     return last_valid_position;
 }
 
 
 
-void		get_absolute_cost(t_stack **stack_a, t_stack **stack_b)
+void		get_absolute_cost( t_stack **stack_b)
 {
     t_stack *current_b = *stack_b;
 
     while (current_b != NULL)
     {
 
-        t_stack *placement_a = find_place(current_b, stack_a);
+        //t_stack *placement_a = find_place(current_b, stack_a);
 
-        // Assigner le coût de placement_a à cost_a de l'élément de stack_b
-        current_b->cost_a = (placement_a != NULL) ? placement_a->cost : 0;
+        //// Assigner le coût de placement_a à cost_a de l'élément de stack_b
+        //current_b->cost_a = (placement_a != NULL) ? placement_a->cost : 0;
 		//printf("\n%d\n", current_b->cost_a);
         // Calculer le coût absolu
         int cost_b = current_b->cost;
@@ -164,13 +164,10 @@ void find_best_op(t_stack **stack_a,t_stack **stack_b)
 		{
 			cpr = tmp_b->absolute_cost;
 			rot_b = tmp_b->cost;
-			rot_a = (find_place(tmp_b, stack_a))->cost;
-
+			rot_a = tmp_b->cost_a;
 		}
 		tmp_b = tmp_b->next;
-
 	}
-
 	ft_pushwap(stack_a, stack_b, &rot_a, &rot_b);
 
 }
@@ -197,11 +194,6 @@ void	ft_pushwap(t_stack **stack_a, t_stack **stack_b, int *rot_a, int *rot_b)
 
 	}
 	ft_push(stack_b, stack_a,'a');
-	//get_cost(stack_a);
-	//get_cost(stack_b);
-	//int l = get_absolute_cost(stack_a, stack_b);
-	//find_best_op(stack_a, stack_b, &l);
-	//ft_print_stack(stack_a, stack_b, ft_stksize(*stack_b));
 	ft_get_cost(stack_a, stack_b);
 
 }

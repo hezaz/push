@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:35:14 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/05 14:47:54 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/05 22:57:04 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void ft_getsize(t_stack **stack)
 	}
 
 }
+
+
 
 void ft_get_index_final(t_stack *stack_a)
 {

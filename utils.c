@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:40:56 by hzaz              #+#    #+#             */
-/*   Updated: 2023/12/26 17:26:22 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/06 00:06:30 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,22 @@ int	ft_pushatoi(const char *str, t_stack *stack_a)
 
 // Swap the top two elements of the stack.
 // No action if there's only one or no elements.
+void ft_swap(t_stack **stack, char c, int *i)
+{
+	if (c == 'a')
+	{
+		ft_printf("sa\n");
+	}
+	if (c == 'b')
+	{
+		ft_printf("sb\n");
+	}
+	if (*i > 0)
+		(*i)--;
+	if (*i < 0)
+		(*i) ++;
+	swap(stack);
+}
 void swap(t_stack **stack)
 {
 	t_stack *temp;
@@ -132,7 +148,7 @@ void	ft_rotate(t_stack **stack, int *i, char c)
 
 	if (ft_stksize(*stack) == 2 && *i != 0)
 	{
-		swap(stack);
+		ft_swap(stack, c, i);
 		return ;
 	}
 	if (*i < 0 && *i && i)

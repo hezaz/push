@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:47:43 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/05 18:39:40 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/06 01:19:56 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,6 @@ t_stack		*ft_stklast(t_stack **stack);
 void first(t_stack **stack_a, t_stack **stack_b);
 void second_sorrt(t_stack **stack_a, t_stack **stack_b);
 void first_sorrt(t_stack **stack_a, t_stack **stack_b);
+t_stack	*ft_stkmax(t_stack **stack_a);
+t_stack	*ft_stkmin(t_stack **stack_a);
 #endif

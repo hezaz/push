@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:39:57 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/05 20:28:19 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/06 01:22:19 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,40 @@ void	get_cost(t_stack **stack)
 
 t_stack *find_place(t_stack *element_b, t_stack **stack_a)
 {
-    t_stack *current = *stack_a;
+    t_stack *current;
     t_stack *last_valid_position = NULL;
 
-    // Si stack_a est vide, retourner NULL (aucun placement possible)
+	current = *stack_a;
+	    // Si stack_a est vide, retourner NULL (aucun placement possible)
     if (current == NULL)
     {
         return NULL;
     }
 	get_cost(stack_a);
+
+	if (current->index > element_b->index && ft_stklast(&current)->index < element_b->index)
+		return (current);
+	else if (element_b->index < ft_stkmin(&current)->index)
+		return (ft_stkmin(&current));
+	else if (element_b->index > ft_stkmax(stack_a)->index)
+	{
+		if (ft_stkmax(stack_a)->next)
+			return (ft_stkmax(stack_a)->next);
+		return (*stack_a);
+	}
+
     // Recherche de la position où element_b doit être inséré
     while (current->next != NULL)
     {
-        if (current->index < element_b->index && current->next->index > element_b->index)
+        if (current->value < element_b->value && current->next->value > element_b->value)
         {
             last_valid_position = current->next;
             break;
         }
         current = current->next;
     }
+	current = *stack_a;
+	//if (current->value )
 
     // Gérer le cas où l'élément doit être placé en fin de stack_a
     if (last_valid_position == NULL)

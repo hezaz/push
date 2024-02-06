@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:30:25 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/05 20:23:33 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/06 00:52:24 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void ft_print_stack(t_stack **stack_a,t_stack **stack_b, int i)
 }
 
 
+
+
 int main(int ac, char **av)
 {
 	t_stack	*stack_a;
@@ -97,6 +99,8 @@ int main(int ac, char **av)
 	stack_a = NULL;
 	stack_a = get_stack(av, stack_a, ac);
 	ft_get_index_final(stack_a);
+	//ft_print_stack(&stack_a, &stack_b, 0);
+
 	first(&stack_a, &stack_b);
 	//first_sort(&stack_a, &stack_b);
 	//ici y'avait des commentaire
@@ -116,11 +120,14 @@ int main(int ac, char **av)
 	//////ft_print_stack(&stack_a, &stack_b, 0);
 	//////printf("*****************************STACK A & B final*********************************\n\n\n\n");
 	//ft_get_pos(stack_a);
-	//while (stack_a->index != stack_a->index_min)
-	//{
-	//	rotate(&stack_a);
-	//	ft_printf("ra\n");
-	//}
+	//	get_cost(&stack_a);
+	//ft_get_pos(stack_a);
+	//ft_print_stack(&stack_a, &stack_b, 0);
+	while (stack_a->index != stack_a->index_min)
+	{
+		rotate(&stack_a);
+		ft_printf("ra\n");
+	}
 	//ft_get_pos(stack_a);
 	//ft_print_stack(&stack_a, &stack_b, 0);
 	//if (stk_sorted_and_correctly_indexed(&stack_a))
@@ -130,6 +137,9 @@ int main(int ac, char **av)
 	//else
 	//	printf("\n\n        tfou            \n\n\n");
 	//jusque la
+	get_cost(&stack_a);
+	ft_get_pos(stack_a);
+	//ft_print_stack(&stack_a, &stack_b, 0);
 	ft_free_stack(stack_a);
 	ft_free_stack(stack_b);
 	return (0);

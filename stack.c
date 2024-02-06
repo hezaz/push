@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:34:23 by hzaz              #+#    #+#             */
-/*   Updated: 2023/04/12 16:24:50 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/06 01:21:06 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,43 @@ t_stack	*ft_stknew(int value, int pos)
 		return (NULL);
 	(*ret).value = value;
 	(*ret).pos = pos;
-	(*ret).index = pos;
+	(*ret).index = -1;
 	(*ret).cost = 0;
 	ret->next = NULL;
 	return (ret);
+}
+
+t_stack	*ft_stkmax(t_stack **stack_a)
+{
+	t_stack	*max;
+	t_stack *tmp;
+
+	tmp = *stack_a;
+	max = *stack_a;
+	while (tmp)
+	{
+		if (tmp->value > max->value)
+			max = tmp;
+		tmp = tmp->next;
+	}
+	return (max);
+}
+
+
+t_stack	*ft_stkmin(t_stack **stack_a)
+{
+	t_stack	*min;
+	t_stack	*tmp;
+
+	tmp = *stack_a;
+	min = *stack_a;
+	while (tmp)
+	{
+		if (tmp->value < min->value)
+			min = tmp;
+		tmp = tmp->next;
+	}
+	return (min);
 }
 
 void	check_stkdouble(t_stack **stack)

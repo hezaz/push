@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:30:25 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/07 05:11:49 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/07 06:45:30 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	main(int ac, char **av)
 	stack_a = NULL;
 	stack_a = get_stack(av, stack_a, ac);
 	ft_get_index_final(stack_a);
+	ft_mini_sort(&stack_a, &stack_b);
 	first(&stack_a, &stack_b);
 	ft_get_cost(&stack_a, &stack_b);
 	while (stack_a->index != stack_a->index_min)

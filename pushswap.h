@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:47:43 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/07 05:34:51 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/07 06:48:01 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ typedef struct s_stack
 int			*parse_input(int argc, char **argv);
 void		sort_stack(int *stack_a);
 // void		print_instructions();
-void		ft_mini_sort(t_stack **stack_a);
+void		ft_mini_sort(t_stack **stack_a, t_stack **stack_b);
+void	micro_sort(t_stack **stack_a);
+void	mini_sort(t_stack **stack_a, t_stack **stack_b);
 void		ft_get_index_final(t_stack *stack_a);
 void		get_index_max_min(t_stack *stack);
 t_stack		*get_stack(char **av, t_stack *stack_a, int ac);
@@ -42,6 +44,7 @@ void		third_sort(t_stack **stack_a, t_stack **stack_b);
 void		first_sort(t_stack **stack_a, t_stack **stack_b);
 int			ft_stksize(t_stack *stack);
 int			ft_exit(t_stack *stack_a);
+int	check_sort(t_stack **stack);
 void		check_stkdouble(t_stack **stack);
 void		second_sort(t_stack **stack_a, t_stack **stack_b);
 t_stack		**ft_create_b(void);
@@ -55,6 +58,7 @@ void ft_print_stack(t_stack **stack_a,t_stack **stack_b, int i);
 int			main(int ac, char **av);
 void		swap(t_stack **stack);
 void		push(t_stack **src, t_stack **dst);
+void	ft_swap(t_stack **stack, char c, int *i);
 void		rotate(t_stack **stack);
 void		reverse_rotate(t_stack **stack);
 void	norm_getcost(t_stack **stack, int len);

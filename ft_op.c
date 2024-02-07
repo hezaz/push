@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 04:13:51 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/07 04:15:21 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/07 06:33:49 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_swap(t_stack **stack, char c, int *i)
 
 void	ft_push(t_stack **src, t_stack **dst, char c)
 {
+	if (!src || !dst || !(*src))
+		return ;
 	push(src, dst);
 	if (c == 'a')
 	{

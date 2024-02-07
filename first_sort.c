@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:31:43 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/07 04:00:19 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/07 06:44:20 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,14 +116,4 @@ void	first(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-void	ft_mini_sort(t_stack **stack_a)
-{
-	int	un;
 
-	un = 1;
-	if ((*stack_a) && ((*stack_a)->next))
-	{
-		if ((*stack_a)->value > (*stack_a)->next->value)
-			ft_rotate(stack_a, &un, 'a');
-	}
-}

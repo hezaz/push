@@ -18,7 +18,7 @@ void	ft_mini_sort(t_stack **stack_a, t_stack **stack_b)
 
 	un = 1;
 	if (check_sort(stack_a) && !(*stack_b))
-		ft_exit(*stack_a);
+		ft_exit(*stack_a, *stack_b);
 	if (ft_stksize(*stack_a) < 3 && (*stack_a)->next)
 	{
 		if ((*stack_a)->value > (*stack_a)->next->value)
@@ -37,14 +37,14 @@ void	micro_sort(t_stack **stack_a)
 	if (check_sort(stack_a))
 		return ;
 	max = ft_stkmax(stack_a);
-	if (max->pos == 0)
-		ft_rotate(stack_a, &un, 'a');
 	if (max->pos == 1)
+		ft_rotate(stack_a, &un, 'a');
+	if (max->pos == 2)
 	{
 		un *= -1;
 		ft_rotate(stack_a, &un, 'a');
 	}
-	if (max->pos == 2)
+	if (max->pos == 3 && !check_sort(stack_a))
 		ft_swap(stack_a, 'a', &un);
 	ft_get_pos(*stack_a);
 	if (!check_sort(stack_a))
@@ -59,7 +59,7 @@ void	mini_sort(t_stack **stack_a, t_stack **stack_b)
 	while (*stack_a && ft_stksize(*stack_a) > 3)
 	{
 		min = ft_stkmin(stack_a);
-		while (min->pos != 0)
+		while (min->pos != 1)
 		{
 			un = 1;
 			if (min->pos > (ft_stksize(*stack_a) / 2))
@@ -77,4 +77,6 @@ void	mini_sort(t_stack **stack_a, t_stack **stack_b)
 	ft_push(stack_b, stack_a, 'a');
 	ft_push(stack_b, stack_a, 'a');
 	ft_get_pos(*stack_a);
+	if (check_sort(stack_a))
+		ft_exit(*stack_a, *stack_b);
 }

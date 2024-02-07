@@ -31,7 +31,7 @@ int	check_sort(t_stack **stack)
 	t_stack	*tmp;
 
 	tmp = *stack;
-	while (tmp)
+	while (tmp->next)
 	{
 		if (tmp->value > (tmp->next->value))
 			return (0);

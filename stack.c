@@ -71,7 +71,7 @@ void	check_stkdouble(t_stack **stack)
 		while (cur)
 		{
 			if (tmp->value == cur->value)
-				ft_exit(*stack);
+				ft_exit_error(*stack);
 			cur = cur->next;
 		}
 		tmp = tmp->next;

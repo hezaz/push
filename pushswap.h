@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:47:43 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/07 19:07:43 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/07 19:09:31 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,21 @@ void		norm_getcost(t_stack **stack, int len);
 void		get_cost(t_stack **stack);
 t_stack		*norm_findplace(t_stack *stack_b, t_stack **stack_a);
 
+//------------------	 op.c   ------------------//
+
+void		swap(t_stack **stack);
+void		push(t_stack **src, t_stack **dst);
+void		rotate(t_stack **stack);
+void		reverse_rotate(t_stack **stack);
+
+//------------------	 ft_op.c   ------------------//
+
+void		ft_swap(t_stack **stack, char c, int *i);
+void		ft_push(t_stack **src, t_stack **dst, char c);
+void		ft_rotate(t_stack **stack, int *i, char c);
+void		ft_reverse_rotate(t_stack **stack, int *i, char c);
+void		ft_rr(t_stack **stack_a, t_stack **stack_b, int *i, int *j);
+
 //------------------	 double_op.c   ------------------//
 void		ss(t_stack **stack_a, t_stack **stack_b);
 void		rr(t_stack **stack_a, t_stack **stack_b);
@@ -54,14 +69,6 @@ int			still_index(t_stack *stack, int index);
 void		first_sorrt(t_stack **stack_a, t_stack **stack_b);
 void		second_sorrt(t_stack **stack_a, t_stack **stack_b);
 void		first(t_stack **stack_a, t_stack **stack_b);
-
-//------------------	 ft_op.c   ------------------//
-
-void		ft_swap(t_stack **stack, char c, int *i);
-void		ft_push(t_stack **src, t_stack **dst, char c);
-void		ft_rotate(t_stack **stack, int *i, char c);
-void		ft_reverse_rotate(t_stack **stack, int *i, char c);
-void		ft_rr(t_stack **stack_a, t_stack **stack_b, int *i, int *j);
 
 //------------------	 index.c   ------------------//
 
@@ -81,13 +88,6 @@ t_stack		*get_stack(char **av, t_stack *stack_a, int ac);
 void		ft_mini_sort(t_stack **stack_a, t_stack **stack_b);
 void		micro_sort(t_stack **stack_a);
 void		mini_sort(t_stack **stack_a, t_stack **stack_b);
-
-//------------------	 op.c   ------------------//
-
-void		swap(t_stack **stack);
-void		push(t_stack **src, t_stack **dst);
-void		rotate(t_stack **stack);
-void		reverse_rotate(t_stack **stack);
 
 //------------------	 stack.c   ------------------//
 

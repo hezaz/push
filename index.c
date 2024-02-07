@@ -6,17 +6,16 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:35:14 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/05 22:57:04 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/07 04:03:22 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void ft_getsize(t_stack **stack)
+void	ft_getsize(t_stack **stack)
 {
-	int len;
-
-	t_stack *tmp;
+	int		len;
+	t_stack	*tmp;
 
 	len = ft_stksize(*stack);
 	tmp = *stack;
@@ -25,16 +24,13 @@ void ft_getsize(t_stack **stack)
 		tmp->stack_size = len;
 		tmp = tmp->next;
 	}
-
 }
 
-
-
-void ft_get_index_final(t_stack *stack_a)
+void	ft_get_index_final(t_stack *stack_a)
 {
-	t_stack *current;
-	t_stack *runner;
-	int final_index;
+	t_stack	*current;
+	t_stack	*runner;
+	int		final_index;
 
 	current = stack_a;
 	while (current != NULL)
@@ -44,9 +40,7 @@ void ft_get_index_final(t_stack *stack_a)
 		while (runner != NULL)
 		{
 			if (runner->value <= current->value)
-			{
 				final_index++;
-			}
 			runner = runner->next;
 		}
 		current->index = final_index;
@@ -56,12 +50,11 @@ void ft_get_index_final(t_stack *stack_a)
 	get_index_max_min(stack_a);
 }
 
-
 void	get_index_max_min(t_stack *stack)
 {
-	t_stack *tmp;
-	int max;
-	int min;
+	t_stack	*tmp;
+	int		max;
+	int		min;
 
 	max = stack->index;
 	min = stack->index;
@@ -83,8 +76,6 @@ void	get_index_max_min(t_stack *stack)
 	}
 }
 
-
-
 void	ft_get_pos(t_stack *stack)
 {
 	t_stack	*tmp;
@@ -92,7 +83,7 @@ void	ft_get_pos(t_stack *stack)
 
 	tmp = stack;
 	cpt = 0;
-	while(++cpt && tmp)
+	while (++cpt && tmp)
 	{
 		tmp->pos = cpt;
 		tmp = tmp->next;

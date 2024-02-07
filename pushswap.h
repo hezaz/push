@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:47:43 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/07 02:10:01 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/07 05:34:51 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,20 @@ int			ft_exit(t_stack *stack_a);
 void		check_stkdouble(t_stack **stack);
 void		second_sort(t_stack **stack_a, t_stack **stack_b);
 t_stack		**ft_create_b(void);
-void		ft_pushwap(t_stack **stack_a, t_stack **stack_b, int *rota_cpt, int *i);
+void		ft_pushwap(t_stack **stack_a, t_stack **stack_b,t_stack *ret);
 void	 	find_best_op(t_stack **stack_a,t_stack **stack_b);
 t_stack		*ft_stknew(int value, int pos);
 void		ft_free_stack(t_stack *stack);
 void		ft_get_pos(t_stack *stack);
-void			get_absolute_cost(t_stack **stack_a, t_stack **stack_b);
+void			get_absolute_cost(t_stack **stack_b, t_stack **a);
 void ft_print_stack(t_stack **stack_a,t_stack **stack_b, int i);
 int			main(int ac, char **av);
 void		swap(t_stack **stack);
 void		push(t_stack **src, t_stack **dst);
 void		rotate(t_stack **stack);
 void		reverse_rotate(t_stack **stack);
+void	norm_getcost(t_stack **stack, int len);
+t_stack	*norm_findplace(t_stack *stack_b, t_stack **stack_a);
 void		ss(t_stack **stack_a, t_stack **stack_b);
 void		rr(t_stack **stack_a, t_stack **stack_b);
 int			ft_pushatoi(const char *str, t_stack *stack_a);
@@ -66,6 +68,8 @@ void		ft_rotate(t_stack **stack, int *i, char c);
 void		ft_reverse_rotate(t_stack **stack, int *i, char c);
 void		ft_rr(t_stack **stack_a, t_stack **stack_b, int *i, int *j);
 t_stack		*ft_stklast(t_stack **stack);
+int	ft_abs(int nbr);
+void	ft_stkadd_back(t_stack **lst, t_stack *new);
 void first(t_stack **stack_a, t_stack **stack_b);
 void second_sorrt(t_stack **stack_a, t_stack **stack_b);
 void first_sorrt(t_stack **stack_a, t_stack **stack_b);

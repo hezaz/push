@@ -1,6 +1,6 @@
 #  |  |  ___ \    \  |         |
-#  |  |     ) |  |\/ |   _  |  |  /   _
-# ___ __|  __/   |   |  (   |    <    __/
+#  |  |     ) |  |\/ |   _  |  |  /   _ 
+# ___ __|  __/   |   |  (   |    <    __/ 
 #    _|  _____| _|  _| \__,_| _|\_\ \___|
 #                              by jcluzet
 ################################################################################
@@ -9,12 +9,13 @@
 
 NAME        := push_swap
 CC        := gcc
-FLAGS    := -Wall -Wextra -Werror -g
+FLAGS    := -Wall -Wextra -Werror 
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
 ################################################################################
 
-SRCS        :=      stack.c \
+SRCS        :=      double_op.c \
+                          stack.c \
                           libft/ft_strnstr.c \
                           libft/ft_isdigit.c \
                           libft/ft_lstadd_back.c \
@@ -70,11 +71,14 @@ SRCS        :=      stack.c \
                           libft/ft_itoa.c \
                           libft/ft_tolower.c \
                           first_sort.c \
+                          op.c \
                           index.c \
                           utils.c \
                           main.c \
+                          ft_op.c \
                           cost.c \
-
+                          algo.c \
+                          
 OBJS        := $(SRCS:.c=.o)
 
 .c.o:

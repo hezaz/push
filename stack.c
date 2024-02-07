@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:34:23 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/06 01:21:06 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/07 04:18:17 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_stack	*ft_stknew(int value, int pos)
 t_stack	*ft_stkmax(t_stack **stack_a)
 {
 	t_stack	*max;
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	tmp = *stack_a;
 	max = *stack_a;
@@ -42,7 +42,6 @@ t_stack	*ft_stkmax(t_stack **stack_a)
 	}
 	return (max);
 }
-
 
 t_stack	*ft_stkmin(t_stack **stack_a)
 {
@@ -79,19 +78,6 @@ void	check_stkdouble(t_stack **stack)
 	}
 }
 
-void	ft_free_stack(t_stack *stack)
-{
-	t_stack *tmp;
-
-	tmp = stack;
-	while (tmp)
-	{
-		tmp = stack->next;
-		free(stack);
-		stack = tmp;
-	}
-}
-
 void	ft_stkadd_back(t_stack **lst, t_stack *new)
 {
 	t_stack	*tmp;
@@ -108,25 +94,4 @@ void	ft_stkadd_back(t_stack **lst, t_stack *new)
 		tmp = tmp -> next;
 	tmp -> next = new;
 	return ;
-}
-
-t_stack	*get_stack(char **av, t_stack *stack_a, int ac)
-{
-	int	i;
-	int	num;
-
-	i = 1;
-	while (av[i] && *av[i])
-	{
-		num = ft_pushatoi(av[i], stack_a);
-		ft_stkadd_back(&stack_a, ft_stknew(num, i));
-		i++;
-	}
-	check_stkdouble(&stack_a);
-	if (i != ac)
-	{
-		ft_free_stack(stack_a);
-		return NULL;
-	}
-	return (stack_a);
 }

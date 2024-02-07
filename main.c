@@ -6,24 +6,20 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:30:25 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/07 06:45:30 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/07 18:44:43 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int	stk_sorted(t_stack **stack)
+int	ft_exit(t_stack *stack_a, t_stack *stack_b)
 {
-	t_stack	*tmp;
-
-	tmp = *stack;
-	while (tmp)
-	{
-		if (tmp->index != (tmp->pos - 1))
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
+	if (stack_a)
+		ft_free_stack(stack_a);
+	if (stack_b)
+		ft_free_stack(stack_b);
+	exit(0);
+	return (-1);
 }
 
 int	check_sort(t_stack **stack)

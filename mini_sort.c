@@ -6,7 +6,7 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 06:16:15 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/07 06:50:40 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/07 18:43:22 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	mini_sort(t_stack **stack_a, t_stack **stack_b)
 	micro_sort(stack_a);
 	ft_push(stack_b, stack_a, 'a');
 	ft_push(stack_b, stack_a, 'a');
-	ft_get_pos(*stack_a);
 	if (check_sort(stack_a))
 		ft_exit(*stack_a, *stack_b);
 }

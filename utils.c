@@ -6,21 +6,11 @@
 /*   By: hzaz <hzaz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:40:56 by hzaz              #+#    #+#             */
-/*   Updated: 2024/02/07 04:16:53 by hzaz             ###   ########.fr       */
+/*   Updated: 2024/02/07 18:44:17 by hzaz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"pushswap.h"
-
-int	ft_exit(t_stack *stack_a, t_stack *stack_b)
-{
-	if (stack_a)
-		ft_free_stack(stack_a);
-	if (stack_b)
-		ft_free_stack(stack_b);
-	exit(0);
-	return (-1);
-}
 
 int	ft_exit_error(t_stack *stack_a)
 {

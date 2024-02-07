@@ -58,8 +58,8 @@ void	get_absolute_cost( t_stack **stack_b, t_stack **stack_a)
 		cost_b = current_b->cost;
 		abs_cost_a = ft_abs(find_place(current_b, stack_a)->cost);
 		abs_cost_b = ft_abs(cost_b);
-		if ((current_b->cost_a <= 0 && cost_b >= 0)
-			|| (current_b->cost_a >= 0 && cost_b <= 0))
+		if ((find_place(current_b, stack_a)->cost <= 0 && cost_b >= 0)
+			|| (find_place(current_b, stack_a)->cost >= 0 && cost_b <= 0))
 			current_b->absolute_cost = abs_cost_a + abs_cost_b;
 		else
 		{
